@@ -10,7 +10,7 @@
 * Redis 2.8.9
 
 预览效果
-![图片](https://github.com/Ravior/Ordering-System-Weixin/blob/master/img/wx1.PNG)
+![图片](https://raw.githubusercontent.com/Ravior/Ordering-System-Weixin/master/img/wx1.PNG)
 
 
 
