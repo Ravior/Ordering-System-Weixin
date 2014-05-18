@@ -10,7 +10,7 @@
 * Redis 2.8.9
 
 预览效果
-![图片](http://mail.gitlib.com/cgi-bin/download?mailid=ZC2218-S33PCSef0jNLhR5NOX4Wc45&filename=%D5%D5%C6%AC.PNG&sid=oZc5ZkjwaYjwwlkK,7&type=json)
+![图片](https://github.com/Ravior/Ordering-System-Weixin/blob/master/img/wx1.PNG)
 
 
 
