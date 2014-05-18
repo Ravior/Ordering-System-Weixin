@@ -59,12 +59,12 @@ var receiveText=function(res,msg){
 
 	}
 	//下单
-	if(/(\d+)\#(\d+)\@qq\.com/.test(content)){
+	if(/^(\d+)\#(\d+)(\@qq\.com)$/i.test(content)){
 		Order.order(res,msg);
 		return;
 	}
 	//是否下单
-	if(/(\d+)\@qq\.com/.test(content)){
+	if(/^(\d+)(\@qq\.com)$/i.test(content)){
 		Order.hasOrder(res,msg);
 		return;
 	}
