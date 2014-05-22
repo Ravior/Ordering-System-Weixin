@@ -63,6 +63,11 @@ var receiveText=function(res,msg){
 		Order.order(res,msg);
 		return;
 	}
+	//取消订单
+	if(/^\-(\d+)(\@qq\.com)$/i.test(content)){
+		Order.unorder(res,msg);
+		return;
+	}
 	//是否下单
 	if(/^(\d+)(\@qq\.com)$/i.test(content)){
 		Order.hasOrder(res,msg);

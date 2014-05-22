@@ -106,6 +106,76 @@ exports.order=function(res,msg){
 	})
 }
 
+//取消订单
+exports.unorder=function(res,msg){
+	//消息发送者
+	var fromUserName=msg.FromUserName[0];
+	//消息接受者
+	var toUserName=msg.ToUserName[0];
+	//消息内容
+	var content=msg.Content[0].toLowerCase();
+	//用户邮箱地址 content="-123@qq.com"
+	var mail=content.slice(1);
+	console.log(mail);
+	
+	//获取用户信息
+	var userInfo=User.getUserInfoByMail(mail);
+
+	//不在点餐时间
+	if(!func.isInValidTime()){
+		var result=" 亲，不好意思,非点餐时间无法执行取消订单操作！";
+		base.sendMsg(res,fromUserName,toUserName,result);
+		return;
+
+	}
+	//用户不存在
+	if(!userInfo){
+		var result="亲，不好意思，您输入的邮箱错误,请重新输入";
+		base.sendMsg(res,fromUserName,toUserName,result);
+		return;
+	}
+
+	//读取用户id,判断用户是否点餐
+	var userId=userInfo.id;
+
+	redis.exists(userId,function(err,reply){
+		//消息发送者
+		var fromUserName=msg.FromUserName[0];
+		//消息接受者
+		var toUserName=msg.ToUserName[0];
+
+		if(err){
+			var result="缓存操作失败!";
+			base.sendMsg(res,fromUserName,toUserName,result);
+			return;
+		}
+		else{
+			//key已经存在
+			if(reply==1){
+				redis.del(userId,function(err,reply){
+					if(err||reply!=1){
+						var result="亲，不好意思，操作失败了！";
+						base.sendMsg(res,fromUserName,toUserName,result);
+				        return;
+					}
+					if(reply==1){
+						var result="取消订单成功,欢迎您继续使用!";
+						base.sendMsg(res,fromUserName,toUserName,result);
+				        return;
+					}
+				})
+				
+			}
+			else{
+				var result="亲,您还木有点餐呢,无法执行该操作！";
+				base.sendMsg(res,fromUserName,toUserName,result);
+				return;	
+			}
+		}
+	})
+}
+
+
 exports.hasOrder=function(res,msg){
 	//消息发送者
 	var fromUserName=msg.FromUserName[0];
