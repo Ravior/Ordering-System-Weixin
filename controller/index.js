@@ -94,6 +94,7 @@ var receiveEvent=function(res,msg){
 		    result+='2. today 或 t :\n   获取今日菜单\n';
 		    result+='3. 餐单id#饭否登陆邮箱 :\n   (例如:12#123@qq.com)\n   微信点餐\n';
 		    result+='4. 饭否登陆邮箱 :\n   (例如:123@qq.com)\n   查询点餐情况\n';
+		    result+='5. \-饭否登陆邮箱 :\n   (例如:-123@qq.com)\n   取消订单\n';
 		    result+='\n祝您用餐愉快!';
 		    //发送被动响应消息
 		    base.sendMsg(res,fromUserName,toUserName,result);
